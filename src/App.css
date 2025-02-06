@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: sans-serif, "Segoe UI", Tahoma, Geneva, Verdana;
+}
+
+body {
+    background: #67b26f;
+    background: -webkit-linear-gradient(to right, #4ca2cd, #67b26f);
+    background: linear-gradient(to right, #4ca2cd, #67b26f);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  font-size: 40px;
+}
+
+.search-results {
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+   
+}
+
+.music-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+    background-color: black;
+    height: 200px;
+    width: 300px;
+    gap: 20px;
+    padding: 20px;
+    margin: 10px;
+}
