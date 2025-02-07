@@ -52,7 +52,8 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
+  max-width: 1200px;
+  margin: auto;
 }
 
 .card {
@@ -84,5 +85,3 @@ h3 {
   background-color: #67b26f;
   cursor: pointer;
 }
-
-
