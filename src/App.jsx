@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-const url = "https://itunes.apple.com/search?term=jack+johnson&limit=25";
 
 function App() {
   const [songs, setSongs] = useState([]);
-  const [searchSong, setSearchSong] = useState([])
+  const [searchValue, setSearchValue] = useState("world");
 
   useEffect(() => {
+    fetchSongs();
+  }, []);
+
+  const fetchSongs = () => {
+    const url = `https://itunes.apple.com/search?term=${searchValue}&limit=25`;
     fetch(`${url}`)
       .then((response) => response.json())
       .then((data) => {
@@ -14,9 +18,13 @@ function App() {
         setSongs(data.results.filter((song) => song.kind == "song"));
       })
       .catch((error) => console.error("Error fetching songs", error));
-  }, []);
+  };
 
-
+  const playSong = (src) => {
+    console.log(src);
+    const audio = new Audio(src);
+    audio.play();
+  };
 
   return (
     <>
@@ -26,8 +34,10 @@ function App() {
         </header>
       </div>
       <div className="search-results">
-        <input type="text" />
-        <button id="search-btn">Search</button>
+        <input type="text" onChange={(e) => setSearchValue(e.target.value)} />
+        <button id="search-btn" onClick={fetchSongs}>
+          Search
+        </button>
       </div>
       <div className="main-content">
         <div className="music-cards">
@@ -35,7 +45,8 @@ function App() {
             <div key={song.trackId} className="card">
               <h3>{song.trackName}</h3>
               <h3>{song.artistName}</h3>
-              <button>Play</button>
+              <button onClick={() => playSong(song.previewUrl)}>Play</button>
+              <audio src={song.previewUrl} muted controls></audio>
             </div>
           ))}
         </div>
